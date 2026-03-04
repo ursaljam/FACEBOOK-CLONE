@@ -1,0 +1,32 @@
+<?php
+include_once 'config.php';
+include_once 'controllers/PostController.php';
+
+$postController = new PostController();
+$posts = $postController->getPosts();
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Clone</title>
+    <link rel="stylesheet" href="frontend/css/style.css">
+</head>
+<body>
+
+<h1>Welcome to Facebook Clone</h1>
+
+<div>
+    <?php while ($row = $posts->fetch_assoc()) : ?>
+        <div class="post">
+            <h3><?php echo $row['username']; ?></h3>
+            <p><?php echo $row['content']; ?></p>
+            <small><?php echo $row['created_at']; ?></small>
+        </div>
+    <?php endwhile; ?>
+</div>
+
+</body>
+</html>
